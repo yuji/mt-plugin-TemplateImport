@@ -1,0 +1,43 @@
+<mt:setvarblock name="page_title"><__trans phrase="Select theme which you want to import template-set."></mt:setvarblock>
+<mt:setvar name="screen_id" value="select-personal-blog-theme">
+<mt:include name="dialog/header.tmpl">
+
+<form name="import_form" id="import_form" method="post" action="<mt:var name="script_url">" target="_top">
+    <input type="hidden" name="__mode" value="import_template_set" />
+    <input type="hidden" name="return_args" value="<mt:var name="return_args" escape="html">" />
+    <input type="hidden" name="blog_id" value="<mt:var name="blog_id" escape="html">" />
+    <input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
+
+    <div id="list-themes" class="themes">
+    <mt:loop name="theme_loop">
+        <div id="theme-<mt:var name="id">" class="theme">
+            <div class="theme-status">
+                <input type="checkbox" name="import_theme" value="<mt:var name="theme_id">"> <__trans phrase="Import this">
+            </div>
+            <div class="theme-thumbnail picture small">
+                <img alt="<$mt:var name="label" escape="html"$>" src="<mt:var name="thumbnail_url">" />
+            </div>
+            <div class="theme-meta">
+                <h2 class="theme-title"><mt:var name="label"></h2>
+                <p class="theme-description description"><mt:var name="description"></p>
+            </div>
+        </div>
+    </mt:loop>
+    </div>
+
+    <div class="actions-bar">
+        <button
+           type="submit"
+           class="action primary-button close"
+           title="<__trans phrase="Import from this theme">"
+           ><__trans phrase="Import"></button>
+        <button
+           type="submit"
+           accesskey="x"
+           title="<__trans phrase="Cancel (x)">"
+           class="action mt-close-dialog"
+           ><__trans phrase="Cancel"></button>
+    </div>
+</form>
+
+<mt:include name="dialog/footer.tmpl">

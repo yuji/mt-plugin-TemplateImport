@@ -1,0 +1,26 @@
+id:TemplateImport
+key:TemplateImport
+name: Template Import Tool
+author_link: http://www.sixapart.com/
+author_name: Six Apart Ltd.
+description: <__trans phrase="This plugin provides ability to import a template-set from other themes.">
+version: 1.0
+
+l10n_class: TemplateImport::L10N
+
+applications:
+  cms:
+    methods:
+      dialog_add_template_set: $TemplateImport::TemplateImport::CMS::dialog_add_template_set
+      import_template_set: $TemplateImport::TemplateImport::CMS::import_template_set
+    page_actions:
+      list_templates:
+        add_template_set:
+          label: Add template set
+          mode: dialog_add_template_set
+          condition: >
+                sub {
+                    MT->instance->blog;
+                }
+          order: 100
+          dialog: 1
